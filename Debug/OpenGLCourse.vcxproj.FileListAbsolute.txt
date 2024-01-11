@@ -1,1 +1,2 @@
 E:\Projects\cpp\OpenGLCourse\Debug\OpenGLCourse.exe
+E:\Projects\cpp\OpenGL\Debug\OpenGLCourse.exe

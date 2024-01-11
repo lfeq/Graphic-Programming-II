@@ -1,2 +1,2 @@
-﻿LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-  OpenGLCourse.vcxproj -> E:\Projects\cpp\OpenGLCourse\Debug\OpenGLCourse.exe
+﻿  main.cpp
+  OpenGLCourse.vcxproj -> E:\Projects\cpp\OpenGL\Debug\OpenGLCourse.exe
