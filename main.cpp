@@ -27,12 +27,13 @@ void display() {
 	int xPos = 3;
 	int yPos = 3;
 	int zPos = -17;
+	float angle = 90.0f;
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			for (int k = 1; k <= 3; k++) {
 				glLoadIdentity();                 // Reset the model-view matrix
 				glTranslatef(xPos * i, yPos * j, zPos * k);  // Move right and into the screen
-
+				glRotatef(angle, 1.0f, 0.0f, 0.0f);
 				glBegin(GL_QUADS);                // Begin drawing the color cube with 6 quads
 				// Top face (y = 1.0f)
 				// Define vertices in counter-clockwise (CCW) order with normal pointing out
@@ -84,43 +85,6 @@ void display() {
 			}
 		}
 	}
-
-	/*
-	glBegin(GL_TRIANGLES);           // Begin drawing the pyramid with 4 triangles
-	// Front
-	glColor3f(1.0f, 0.0f, 0.0f);     // Red
-	glVertex3f(0.0f, 1.0f, 0.0f);
-	glColor3f(0.0f, 1.0f, 0.0f);     // Green
-	glVertex3f(-1.0f, -1.0f, 1.0f);
-	glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-	glVertex3f(1.0f, -1.0f, 1.0f);
-
-	// Right
-	glColor3f(1.0f, 0.0f, 0.0f);     // Red
-	glVertex3f(0.0f, 1.0f, 0.0f);
-	glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-	glVertex3f(1.0f, -1.0f, 1.0f);
-	glColor3f(0.0f, 1.0f, 0.0f);     // Green
-	glVertex3f(1.0f, -1.0f, -1.0f);
-
-	// Back
-	glColor3f(1.0f, 0.0f, 0.0f);     // Red
-	glVertex3f(0.0f, 1.0f, 0.0f);
-	glColor3f(0.0f, 1.0f, 0.0f);     // Green
-	glVertex3f(1.0f, -1.0f, -1.0f);
-	glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-	glVertex3f(-1.0f, -1.0f, -1.0f);
-
-	// Left
-	glColor3f(1.0f, 0.0f, 0.0f);       // Red
-	glVertex3f(0.0f, 1.0f, 0.0f);
-	glColor3f(0.0f, 0.0f, 1.0f);       // Blue
-	glVertex3f(-1.0f, -1.0f, -1.0f);
-	glColor3f(0.0f, 1.0f, 0.0f);       // Green
-	glVertex3f(-1.0f, -1.0f, 1.0f);
-	glEnd();   // Done drawing the pyramid
-	*/
-
 	glutSwapBuffers();  // Swap the front and back frame buffers (double buffering)
 }
 
