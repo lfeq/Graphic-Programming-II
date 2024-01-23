@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 class Cube {
 public:
@@ -6,6 +7,7 @@ public:
 	Cube();
 	Cube(float t_posX, float t_posY, float t_posZ);
 	void Draw();
+	void SetPositions(float t_posX, float t_posY, float t_posZ);
 };
 
 Cube::Cube() {
@@ -21,6 +23,7 @@ Cube::Cube(float t_posX, float t_posY, float t_posZ) {
 }
 
 void Cube::Draw() {
+	glTranslatef(posX, posY, posZ);
 	glBegin(GL_QUADS);                // Begin drawing the color cube with 6 quads
 	// Top face (y = 1.0f)
 	// Define vertices in counter-clockwise (CCW) order with normal pointing out
@@ -65,4 +68,10 @@ void Cube::Draw() {
 	glVertex3f(1.0f, -1.0f, 1.0f);
 	glVertex3f(1.0f, -1.0f, -1.0f);
 	glEnd();  // End of drawing color-cube
+}
+
+void Cube::SetPositions(float t_posX, float t_posY, float t_posZ) {
+	posX = t_posX;
+	posY = t_posY;
+	posZ = t_posZ;
 }

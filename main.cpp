@@ -5,6 +5,7 @@
 #include <GL/glut.h>  // GLUT, include glu.h and gl.h
 #include "Cube.h"
 #include <iostream>
+#include "Rubik.h"
 
  /* Global variables */
 char title[] = "3D Shapes";
@@ -90,12 +91,14 @@ void display() {
 	}
 	*/
 
-	Cube baseCube(0.0f, 0.0f, -15.0f);
+	Rubik rubickCube;
 
-	glLoadIdentity();                 // Reset the model-view matrix
-	glTranslatef(baseCube.posX, baseCube.posY, baseCube.posZ);  // Move right and into the screen
-	glRotatef(0, 1.0f, 0.0f, 0.0f);
-	baseCube.Draw();
+	//Cube baseCube(0.0f, 0.0f, -30.0f);
+	//baseCube.Draw();
+
+	//glLoadIdentity();                 // Reset the model-view matrix
+	/*glTranslatef(baseCube.posX, baseCube.posY, baseCube.posZ);*/  // Move right and into the screen
+	//glRotatef(0, 1.0f, 0.0f, 0.0f);
 	//glBegin(GL_QUADS);                // Begin drawing the color cube with 6 quads
 	//// Top face (y = 1.0f)
 	//// Define vertices in counter-clockwise (CCW) order with normal pointing out
