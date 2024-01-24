@@ -95,10 +95,11 @@ void display() {
 
 	//Cube baseCube(0.0f, 0.0f, -30.0f);
 	//baseCube.Draw();
+	//baseCube.Rotate(45, 1.0f, 0.0f, 0.0f);
 
 	//glLoadIdentity();                 // Reset the model-view matrix
-	/*glTranslatef(baseCube.posX, baseCube.posY, baseCube.posZ);*/  // Move right and into the screen
-	//glRotatef(0, 1.0f, 0.0f, 0.0f);
+	//glTranslatef(baseCube.posX, baseCube.posY, baseCube.posZ); // Move right and into the screen
+	//glRotatef(45, 1.0f, 0.0f, 0.0f);
 	//glBegin(GL_QUADS);                // Begin drawing the color cube with 6 quads
 	//// Top face (y = 1.0f)
 	//// Define vertices in counter-clockwise (CCW) order with normal pointing out
