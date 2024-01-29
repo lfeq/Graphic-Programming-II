@@ -17,6 +17,7 @@ public:
 	void RotateColumn1();
 	void RotateColumn2();
 	void RotateColumn3();
+	void Draw();
 };
 
 Rubik::Rubik() {
@@ -112,6 +113,32 @@ Rubik::Rubik() {
 	column3[2][0] = seven_three;
 	column3[2][1] = eight_three;
 	column3[2][2] = nine_three;
+}
+
+void Rubik::Draw() {
+	for (int x = 0; x < 3; x++) {
+		for (int y = 0; y < 3; y++) {
+			glPushMatrix();
+			row1[x][y].Draw();
+			row2[x][y].Draw();
+			row3[x][y].Draw();
+			glPopMatrix();
+		}
+	}
+	for (int x = 0; x < 3; x++) {
+		for (int y = 0; y < 3; y++) {
+			glPushMatrix();
+			row2[x][y].Draw();
+			glPopMatrix();
+		}
+	}
+	for (int x = 0; x < 3; x++) {
+		for (int y = 0; y < 3; y++) {
+			glPushMatrix();
+			row3[x][y].Draw();
+			glPopMatrix();
+		}
+	}
 }
 
 void Rubik::RotateRow1() {
