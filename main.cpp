@@ -33,15 +33,19 @@ void display() {
 
 void keyboard(unsigned char key, int x, int y) {
 	// Call the rotate function when a specific key is pressed
-	if (key == 'a') {
-		rubikCube.Draw();
-	} else if (key == 's') {
+	if (key == 'z') {
+		rubikCube.RotateRow1();
+	} else if (key == 'a') {
 		rubikCube.RotateRow2();
-	} else if (key == 'd') {
+	} else if (key == 'q') {
 		rubikCube.RotateRow3();
+	} else if (key == 'e') {
+		rubikCube.RotateColumn1();
+	} else if (key == 'r') {
+		rubikCube.RotateColumn2();
+	} else if (key == 't') {
+		rubikCube.RotateColumn3();
 	}
-	// Add more conditions here for other keys and functions
-
 	// Redisplay after the key press
 	glutPostRedisplay();
 }

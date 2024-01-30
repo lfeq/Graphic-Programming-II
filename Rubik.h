@@ -113,6 +113,10 @@ Rubik::Rubik() {
 	column3[2][0] = seven_three;
 	column3[2][1] = eight_three;
 	column3[2][2] = nine_three;
+
+	std::cout << "Cube uno: " << &one_one << std::endl;
+	std::cout << "Cube uno columna 1: " << &column1[0][0] << std::endl;
+	std::cout << "Cube uno fila 1: " << &row1[0][0] << std::endl;
 }
 
 void Rubik::Draw() {
@@ -140,12 +144,11 @@ void Rubik::Draw() {
 }
 
 void Rubik::RotateRow1() {
-	std::cout << "Hola";
 	for (int x = 0; x < 3; x++) {
 		for (int y = 0; y < 3; y++) {
 			glPushMatrix();
-			//row1[x][y].Draw();
-			row1[x][y].Rotate(5, 1, 0, 0);
+			//row1[x][y].Rotate(5, 1, 0, 0);
+			row1[x][y].RotateY(90.0f);
 			glPopMatrix();
 		}
 	}
@@ -155,8 +158,8 @@ void Rubik::RotateRow2() {
 	for (int x = 0; x < 3; x++) {
 		for (int y = 0; y < 3; y++) {
 			glPushMatrix();
-			//row1[x][y].Draw();
-			row2[x][y].Rotate(45, 1, 0, 0);
+			//row2[x][y].Rotate(45, 1, 0, 0);
+			row2[x][y].RotateY(90.0f);
 			glPopMatrix();
 		}
 	}
@@ -166,19 +169,21 @@ void Rubik::RotateRow3() {
 	for (int x = 0; x < 3; x++) {
 		for (int y = 0; y < 3; y++) {
 			glPushMatrix();
-			//row1[x][y].Draw();
-			row3[x][y].Rotate(45, 1, 0, 0);
+			//row3[x][y].Rotate(45, 1, 0, 0);
+			row3[x][y].RotateY(90.0f);
 			glPopMatrix();
 		}
 	}
 }
 
 void Rubik::RotateColumn1() {
+	std::cout << "Cube uno columna 1: " << &column1[0][0] << std::endl;
+	std::cout << "Cube uno fila 1: " << &row1[0][0] << std::endl;
 	for (int x = 0; x < 3; x++) {
 		for (int y = 0; y < 3; y++) {
 			glPushMatrix();
 			//row1[x][y].Draw();
-			column1[x][y].Rotate(45, 1, 0, 0);
+			column1[x][y].RotateX(90.0f);
 			glPopMatrix();
 		}
 	}
@@ -189,7 +194,8 @@ void Rubik::RotateColumn2() {
 		for (int y = 0; y < 3; y++) {
 			glPushMatrix();
 			//row1[x][y].Draw();
-			column2[x][y].Rotate(45, 1, 0, 0);
+			//column2[x][y].Rotate(45, 1, 0, 0);
+			column2[x][y].RotateX(90.0f);
 			glPopMatrix();
 		}
 	}
@@ -200,11 +206,8 @@ void Rubik::RotateColumn3() {
 		for (int y = 0; y < 3; y++) {
 			glPushMatrix();
 			//row1[x][y].Draw();
-			column3[x][y].Rotate(45, 1, 0, 0);
+			column3[x][y].RotateX(90.0f);
 			glPopMatrix();
 		}
 	}
 }
-
-//TODO: Crear una funcion que rote los cubos
-// El cubo se tiene que manejar por niveles

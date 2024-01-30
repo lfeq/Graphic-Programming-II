@@ -3,12 +3,15 @@
 
 class Cube {
 public:
-	float posX, posY, posZ, rotX;
+	float posX, posY, posZ, rotX, rotY, rotZ;
 	Cube();
 	Cube(float t_posX, float t_posY, float t_posZ);
 	void Draw();
 	void SetPositions(float t_posX, float t_posY, float t_posZ);
 	void Rotate(float t_angle, float t_rotX, float t_rotY, float t_rotZ);
+	void RotateX(float t_angle);
+	void RotateY(float t_angle);
+	void RotateZ(float t_angle);
 };
 
 Cube::Cube() {
@@ -16,6 +19,8 @@ Cube::Cube() {
 	posY = 0;
 	posZ = 0;
 	rotX = 0;
+	rotY = 0;
+	rotZ = 0;
 }
 
 Cube::Cube(float t_posX, float t_posY, float t_posZ) {
@@ -23,12 +28,15 @@ Cube::Cube(float t_posX, float t_posY, float t_posZ) {
 	posY = t_posY;
 	posZ = t_posZ;
 	rotX = 0;
+	rotY = 0;
+	rotZ = 0;
 }
 
 void Cube::Draw() {
-	rotX++;
 	glTranslatef(posX, posY, posZ);
 	glRotatef(rotX, 1.0f, 0.0f, 0.0f);
+	glRotatef(rotY, 0.0f, 1.0f, 0.0f);
+	glRotatef(rotZ, 0.0f, 0.0f, 1.0f);
 	glBegin(GL_QUADS);                // Begin drawing the color cube with 6 quads
 	// Top face (y = 1.0f)
 	// Define vertices in counter-clockwise (CCW) order with normal pointing out
@@ -128,4 +136,18 @@ void Cube::Rotate(float t_angle, float t_rotX, float t_rotY, float t_rotZ) {
 	glVertex3f(1.0f, -1.0f, 1.0f);
 	glVertex3f(1.0f, -1.0f, -1.0f);
 	glEnd();  // End of drawing color-cube
+}
+
+void Cube::RotateX(float t_angle) {
+	rotX += t_angle;
+	std::cout << "Rot: " << rotX << ", " << rotY << ", " << rotZ << std::endl;
+	std::cout << "Pos: " << posX << ", " << posY << ", " << posZ << std::endl;
+}
+
+void Cube::RotateY(float t_angle) {
+	rotY += t_angle;
+}
+
+void Cube::RotateZ(float t_angle) {
+	rotZ += t_angle;
 }
