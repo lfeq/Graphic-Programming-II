@@ -120,8 +120,6 @@ void Rubik::Draw() {
 		for (int y = 0; y < 3; y++) {
 			glPushMatrix();
 			row1[x][y].Draw();
-			row2[x][y].Draw();
-			row3[x][y].Draw();
 			glPopMatrix();
 		}
 	}
@@ -142,11 +140,12 @@ void Rubik::Draw() {
 }
 
 void Rubik::RotateRow1() {
+	std::cout << "Hola";
 	for (int x = 0; x < 3; x++) {
 		for (int y = 0; y < 3; y++) {
 			glPushMatrix();
 			//row1[x][y].Draw();
-			row1[x][y].Rotate(45, 1, 0, 0);
+			row1[x][y].Rotate(5, 1, 0, 0);
 			glPopMatrix();
 		}
 	}

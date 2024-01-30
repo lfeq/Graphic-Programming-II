@@ -8,7 +8,8 @@
 #include "Rubik.h"
 
  /* Global variables */
-char title[] = "3D Shapes";
+char title[] = "Rubik Cube";
+Rubik rubikCube; // Create a global instance of Rubik
 
 /* Initialize OpenGL Graphics */
 void initGL() {
@@ -20,16 +21,29 @@ void initGL() {
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // Nice perspective corrections
 }
 
-/* Handler for window-repaint event. Called back when the window first appears and
-   whenever the window needs to be re-painted. */
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
 	glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
 
-	Rubik rubikCube;
-	rubikCube.Draw();
+	rubikCube.Draw(); // Draw the Rubik's cube
+	//rubikCube.RotateRow1();
 
 	glutSwapBuffers();  // Swap the front and back frame buffers (double buffering)
+}
+
+void keyboard(unsigned char key, int x, int y) {
+	// Call the rotate function when a specific key is pressed
+	if (key == 'a') {
+		rubikCube.Draw();
+	} else if (key == 's') {
+		rubikCube.RotateRow2();
+	} else if (key == 'd') {
+		rubikCube.RotateRow3();
+	}
+	// Add more conditions here for other keys and functions
+
+	// Redisplay after the key press
+	glutPostRedisplay();
 }
 
 /* Handler for window re-size event. Called back when the window first appears and
@@ -56,6 +70,7 @@ int main(int argc, char** argv) {
 	glutInitWindowSize(640, 480);   // Set the window's initial width & height
 	glutInitWindowPosition(50, 50); // Position the window's initial top-left corner
 	glutCreateWindow(title);          // Create window with the given title
+	glutKeyboardFunc(keyboard);
 	glutDisplayFunc(display);       // Register callback handler for window re-paint event
 	glutReshapeFunc(reshape);       // Register callback handler for window re-size event
 	initGL();                       // Our own OpenGL initialization

@@ -3,7 +3,7 @@
 
 class Cube {
 public:
-	float posX, posY, posZ;
+	float posX, posY, posZ, rotX;
 	Cube();
 	Cube(float t_posX, float t_posY, float t_posZ);
 	void Draw();
@@ -15,16 +15,20 @@ Cube::Cube() {
 	posX = 0;
 	posY = 0;
 	posZ = 0;
+	rotX = 0;
 }
 
 Cube::Cube(float t_posX, float t_posY, float t_posZ) {
 	posX = t_posX;
 	posY = t_posY;
 	posZ = t_posZ;
+	rotX = 0;
 }
 
 void Cube::Draw() {
+	rotX++;
 	glTranslatef(posX, posY, posZ);
+	glRotatef(rotX, 1.0f, 0.0f, 0.0f);
 	glBegin(GL_QUADS);                // Begin drawing the color cube with 6 quads
 	// Top face (y = 1.0f)
 	// Define vertices in counter-clockwise (CCW) order with normal pointing out
