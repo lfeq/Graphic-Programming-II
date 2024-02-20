@@ -14,6 +14,6 @@ public:
 private:
 	GLuint texture2D, textureID;
 	int width, height, bitDepth;
-	char* fileLocation;
+	const char* fileLocation;
 };
 
