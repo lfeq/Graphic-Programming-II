@@ -25,22 +25,37 @@ const unsigned int height = 800;
 // Vertices coordinates
 GLfloat vertices[] =
 { //     COORDINATES     /        COLORS      /   TexCoord  //
-	-0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,
-	-0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	5.0f, 0.0f,
-	 0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,
-	 0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f,	5.0f, 0.0f,
-	 0.0f, 0.8f,  0.0f,     0.92f, 0.86f, 0.76f,	2.5f, 5.0f
+	-0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f, // 0
+	-0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 1
+	 0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 2
+	 0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// 3
+	-0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// 4
+	-0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// 5
+	 0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 6
+	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// 7
 };
 
 // Indices for vertices order
 GLuint indices[] =
 {
+	// Base
 	0, 1, 2,
 	0, 2, 3,
-	0, 1, 4,
-	1, 2, 4,
-	2, 3, 4,
-	3, 0, 4
+	// Top
+	4, 5, 6,
+	6, 7, 4,
+	// lado 1
+	1, 5, 0,
+	5, 4, 0,
+	// lado 2
+	1, 2, 6,
+	6, 5, 1,
+	// Lado 3
+	2, 3, 7,
+	7, 6, 2,
+	// Lado 4
+	3, 0, 4,
+	4, 7, 3
 };
 
 
@@ -114,7 +129,7 @@ int main()
 	std::string texPath = "/Resources/YoutubeOpenGL 7 - Going 3D/";
 
 	// Texture
-	Texture brickTex((parentDir + texPath + "brick.png").c_str(), GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	Texture brickTex((parentDir + texPath + "pop_cat.png").c_str(), GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	brickTex.texUnit(shaderProgram, "tex0", 0);
 
 	// Original code from the tutorial
@@ -153,8 +168,8 @@ int main()
 
 		// Assigns different transformations to each matrix
 		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-		view = glm::translate(view, glm::vec3(0.0f, -0.5f, -2.0f));
-		proj = glm::perspective(glm::radians(45.0f), (float)width / height, 0.1f, 100.0f);
+		view = glm::translate(view, glm::vec3(0.0f, -1.0f, -2.0f));
+		proj = glm::perspective(glm::radians(65.0f), (float)width / height, 0.1f, 100.0f);
 
 		// Outputs the matrices into the Vertex Shader
 		int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
