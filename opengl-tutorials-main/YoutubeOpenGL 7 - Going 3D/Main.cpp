@@ -25,14 +25,14 @@ const unsigned int height = 800;
 // Vertices coordinates
 GLfloat vertices[] =
 { //     COORDINATES     /        COLORS      /   TexCoord  //
-	-0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f, // 0
-	-0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 1
-	 0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 2
-	 0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// 3
-	-0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// 4
-	-0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// 5
-	 0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 6
-	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// 7
+	-0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f, // 0
+	-0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 1
+	 0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 2
+	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// 3
+	-0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// 4
+	-0.5f, -0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// 5
+	 0.5f, -0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 6
+	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// 7
 };
 
 // Indices for vertices order
@@ -168,7 +168,7 @@ int main()
 
 		// Assigns different transformations to each matrix
 		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-		view = glm::translate(view, glm::vec3(0.0f, -1.0f, -2.0f));
+		view = glm::translate(view, glm::vec3(0.0f, -0.5f, -2.0f));
 		proj = glm::perspective(glm::radians(65.0f), (float)width / height, 0.1f, 100.0f);
 
 		// Outputs the matrices into the Vertex Shader
