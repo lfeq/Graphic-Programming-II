@@ -17,10 +17,8 @@ namespace fs = std::filesystem;
 #include"VBO.h"
 #include"EBO.h"
 
-
 const unsigned int width = 800;
 const unsigned int height = 800;
-
 
 // Vertices coordinates
 GLfloat vertices[] =
@@ -48,7 +46,7 @@ GLfloat vertices[] =
 	 -0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// A, 20
 	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// B, 21
 	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// C, 22
-	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// D, 23
+	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// D, 23
 	 -0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// E, 24
 	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// H, 25
 	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// G, 26
@@ -78,14 +76,11 @@ GLuint indices[] =
 	4, 7, 3
 };
 
-
-
-int main()
-{
+int main() {
 	// Initialize GLFW
 	glfwInit();
 
-	// Tell GLFW what version of OpenGL we are using 
+	// Tell GLFW what version of OpenGL we are using
 	// In this case we are using OpenGL 3.3
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -96,8 +91,7 @@ int main()
 	// Create a GLFWwindow object of 800 by 800 pixels, naming it "YoutubeOpenGL"
 	GLFWwindow* window = glfwCreateWindow(width, height, "YoutubeOpenGL", NULL, NULL);
 	// Error check if the window fails to create
-	if (window == NULL)
-	{
+	if (window == NULL) {
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
 		return -1;
@@ -111,12 +105,8 @@ int main()
 	// In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
 	glViewport(0, 0, width, height);
 
-
-
 	// Generates Shader object using shaders default.vert and default.frag
 	Shader shaderProgram("default.vert", "default.frag");
-
-
 
 	// Generates Vertex Array Object and binds it
 	VAO VAO1;
@@ -164,8 +154,7 @@ int main()
 	glEnable(GL_DEPTH_TEST);
 
 	// Main while loop
-	while (!glfwWindowShouldClose(window))
-	{
+	while (!glfwWindowShouldClose(window)) {
 		// Specify the color of the background
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		// Clean the back buffer and depth buffer
@@ -175,8 +164,7 @@ int main()
 
 		// Simple timer
 		double crntTime = glfwGetTime();
-		if (crntTime - prevTime >= 1 / 60)
-		{
+		if (crntTime - prevTime >= 1 / 60) {
 			rotation += 0.5f;
 			prevTime = crntTime;
 		}
@@ -212,8 +200,6 @@ int main()
 		// Take care of all GLFW events
 		glfwPollEvents();
 	}
-
-
 
 	// Delete all the objects we've created
 	VAO1.Delete();
