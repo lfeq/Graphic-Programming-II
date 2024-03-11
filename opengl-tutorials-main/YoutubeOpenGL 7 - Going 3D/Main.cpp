@@ -16,65 +16,66 @@ namespace fs = std::filesystem;
 #include"VAO.h"
 #include"VBO.h"
 #include"EBO.h"
+#include"Cube.h"
 
 const unsigned int width = 800;
 const unsigned int height = 800;
 
-// Vertices coordinates
-GLfloat vertices[] =
-{ //     COORDINATES     /        COLORS      /   TexCoord  //
-	-0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f, // 0
-	-0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 1
-	 0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 2
-	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// 3
-	-0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 4
-	-0.5f, -0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// 5
-	 0.5f, -0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 6
-	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// 7
-	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// H, 8
-	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// D, 9
-	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// C, 10
-	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// G, 11
-	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// G, 12
-	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// C, 13
-	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// B, 14
-	 -0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// F, 15
-	 -0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// F, 16
-	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// B, 17
-	 -0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// A, 18
-	 -0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// E, 19
-	 -0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// A, 20
-	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// B, 21
-	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// C, 22
-	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// D, 23
-	 -0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// E, 24
-	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// H, 25
-	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// G, 26
-	 -0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// F, 27
-};
-
-// Indices for vertices order
-GLuint indices[] =
-{
-	// Base
-	24, 25, 26,
-	26, 27, 24,
-	// Top
-	20, 21, 22,
-	22, 23, 20,
-	// lado 1
-	16, 17, 18,
-	18, 19, 16,
-	// lado 2
-	12, 13, 14,
-	14, 15, 12,
-	// Lado 3
-	8, 9, 10,
-	10, 11, 8,
-	// Lado 4
-	3, 0, 4,
-	4, 7, 3
-};
+//// Vertices coordinates
+//GLfloat vertices[] =
+//{ //     COORDINATES     /        COLORS      /   TexCoord  //
+//	-0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f, // 0
+//	-0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 1
+//	 0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 2
+//	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// 3
+//	-0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 4
+//	-0.5f, -0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// 5
+//	 0.5f, -0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 6
+//	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// 7
+//	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// H, 8
+//	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// D, 9
+//	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// C, 10
+//	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// G, 11
+//	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// G, 12
+//	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// C, 13
+//	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// B, 14
+//	 -0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// F, 15
+//	 -0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// F, 16
+//	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// B, 17
+//	 -0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// A, 18
+//	 -0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// E, 19
+//	 -0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// A, 20
+//	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// B, 21
+//	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 1.0f,	// C, 22
+//	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.0f,	// D, 23
+//	 -0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// E, 24
+//	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// H, 25
+//	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// G, 26
+//	 -0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// F, 27
+//};
+//
+//// Indices for vertices order
+//GLuint indices[] =
+//{
+//	// Base
+//	24, 25, 26,
+//	26, 27, 24,
+//	// Top
+//	20, 21, 22,
+//	22, 23, 20,
+//	// lado 1
+//	16, 17, 18,
+//	18, 19, 16,
+//	// lado 2
+//	12, 13, 14,
+//	14, 15, 12,
+//	// Lado 3
+//	8, 9, 10,
+//	10, 11, 8,
+//	// Lado 4
+//	3, 0, 4,
+//	4, 7, 3
+//};
 
 int main() {
 	// Initialize GLFW
@@ -108,26 +109,26 @@ int main() {
 	// Generates Shader object using shaders default.vert and default.frag
 	Shader shaderProgram("default.vert", "default.frag");
 
-	// Generates Vertex Array Object and binds it
-	VAO VAO1;
-	VAO1.Bind();
+	//// Generates Vertex Array Object and binds it
+	//VAO VAO1;
+	//VAO1.Bind();
 
-	// Generates Vertex Buffer Object and links it to vertices
-	VBO VBO1(vertices, sizeof(vertices));
-	// Generates Element Buffer Object and links it to indices
-	EBO EBO1(indices, sizeof(indices));
+	//// Generates Vertex Buffer Object and links it to vertices
+	//VBO VBO1(vertices, sizeof(vertices));
+	//// Generates Element Buffer Object and links it to indices
+	//EBO EBO1(indices, sizeof(indices));
 
-	// Links VBO attributes such as coordinates and colors to VAO
-	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
-	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-	VAO1.LinkAttrib(VBO1, 2, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-	// Unbind all to prevent accidentally modifying them
-	VAO1.Unbind();
-	VBO1.Unbind();
-	EBO1.Unbind();
+	//// Links VBO attributes such as coordinates and colors to VAO
+	//VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
+	//VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	//VAO1.LinkAttrib(VBO1, 2, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	//// Unbind all to prevent accidentally modifying them
+	//VAO1.Unbind();
+	//VBO1.Unbind();
+	//EBO1.Unbind();
 
-	// Gets ID of uniform called "scale"
-	GLuint uniID = glGetUniformLocation(shaderProgram.ID, "scale");
+	//// Gets ID of uniform called "scale"
+	//GLuint uniID = glGetUniformLocation(shaderProgram.ID, "scale");
 
 	/*
 	* I'm doing this relative path thing in order to centralize all the resources into one folder and not
@@ -141,6 +142,8 @@ int main() {
 	// Texture
 	Texture brickTex((parentDir + texPath + "pop_cat.png").c_str(), GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	brickTex.texUnit(shaderProgram, "tex0", 0);
+
+	Cube cube(shaderProgram);
 
 	// Original code from the tutorial
 	/*Texture brickTex("brick.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
@@ -176,7 +179,7 @@ int main() {
 
 		// Assigns different transformations to each matrix
 		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-		view = glm::translate(view, glm::vec3(0.0f, -0.5f, -2.0f));
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -2.0f));
 		proj = glm::perspective(glm::radians(65.0f), (float)width / height, 0.1f, 100.0f);
 
 		// Outputs the matrices into the Vertex Shader
@@ -188,11 +191,11 @@ int main() {
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj));
 
 		// Assigns a value to the uniform; NOTE: Must always be done after activating the Shader Program
-		glUniform1f(uniID, 0.5f);
+		glUniform1f(cube.uniID, 0.5f);
 		// Binds texture so that is appears in rendering
 		brickTex.Bind();
 		// Bind the VAO so OpenGL knows to use it
-		VAO1.Bind();
+		cube.VAO1.Bind();
 		// Draw primitives, number of indices, datatype of indices, index of indices
 		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(int), GL_UNSIGNED_INT, 0);
 		// Swap the back buffer with the front buffer
@@ -202,10 +205,10 @@ int main() {
 	}
 
 	// Delete all the objects we've created
-	VAO1.Delete();
+	/*VAO1.Delete();
 	VBO1.Delete();
 	EBO1.Delete();
-	brickTex.Delete();
+	brickTex.Delete();*/
 	shaderProgram.Delete();
 	// Delete window before ending the program
 	glfwDestroyWindow(window);
