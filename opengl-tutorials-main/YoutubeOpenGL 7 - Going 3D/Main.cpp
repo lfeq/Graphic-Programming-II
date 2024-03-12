@@ -170,22 +170,65 @@ int main() {
 		}
 
 		// Initializes matrices so they are not the null matrix
-		glm::mat4 model = glm::mat4(1.0f);
+		//glm::mat4 model = glm::mat4(1.0f);
 		glm::mat4 view = glm::mat4(1.0f);
 		glm::mat4 proj = glm::mat4(1.0f);
 
+		glm::mat4 models[27] = {
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f),
+			glm::mat4(1.0f)
+		};
+
 		// Assigns different transformations to each matrix
-		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-		view = glm::translate(view, glm::vec3(0.0f, -0.5f, -2.0f));
+		//model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
+		view = glm::translate(view, glm::vec3(0.0f, -0.5f, -10.0f));
 		proj = glm::perspective(glm::radians(65.0f), (float)width / height, 0.1f, 100.0f);
 
 		// Outputs the matrices into the Vertex Shader
 		int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 		int projLoc = glGetUniformLocation(shaderProgram.ID, "proj");
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj));
+
+		int iterator = 0;
+		for (int i = -1; i <= 1; i++) {
+			for (int j = -1; j <= 1; j++) {
+				for (int k = -1; k <= 1; k++) {
+					models[iterator] = glm::rotate(models[iterator], glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
+					models[iterator] = glm::translate(models[iterator], glm::vec3(i, j, k));
+					glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(models[iterator]));
+					glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(int), GL_UNSIGNED_INT, 0);
+					iterator++;
+				}
+			}
+		}
 
 		// Assigns a value to the uniform; NOTE: Must always be done after activating the Shader Program
 		glUniform1f(uniID, 0.5f);
@@ -194,7 +237,7 @@ int main() {
 		// Bind the VAO so OpenGL knows to use it
 		VAO1.Bind();
 		// Draw primitives, number of indices, datatype of indices, index of indices
-		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(int), GL_UNSIGNED_INT, 0);
+		//glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(int), GL_UNSIGNED_INT, 0);
 		// Swap the back buffer with the front buffer
 		glfwSwapBuffers(window);
 		// Take care of all GLFW events
