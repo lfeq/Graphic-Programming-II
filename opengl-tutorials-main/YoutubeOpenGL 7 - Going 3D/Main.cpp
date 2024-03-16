@@ -16,67 +16,252 @@ namespace fs = std::filesystem;
 #include"VAO.h"
 #include"VBO.h"
 #include"EBO.h"
+#include"Cube.h"
 
 const unsigned int width = 800;
 const unsigned int height = 800;
 
-// Vertices coordinates
-GLfloat vertices[] =
-{ //     COORDINATES     /        COLORS      /   TexCoord  //
-	-0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.75f, 0.66f, // 0
-	-0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.75f, 0.66f,	// 1
-	 0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.66f,	// 2
-	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.75f, 0.33f,	// 3
-	-0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.66f,	// 4
-	-0.5f, -0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// 5
-	 0.5f, -0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 6
-	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.33f,	// 7
-	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.33f,	// H, 8
-	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.66f,	// D, 9
-	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.75f, 0.66f,	// C, 10
-	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.75f, 0.33f,	// G, 11
-	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.66f,	// G, 12
-	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 1.0f,	// C, 13
-	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 1.0f,	// B, 14
-	 -0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.66f,	// F, 15
-	 -0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.33f,	// F, 16
-	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.66f,	// B, 17
-	 -0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.66f,	// A, 18
-	 -0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.33f,	// E, 19
-	 -0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.0f,	// A, 20
-	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.33f,	// B, 21
-	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.33f,	// C, 22
-	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.0f,	// D, 23
-	 -0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.33f,	// E, 24
-	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.66f,	// H, 25
-	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.66f,	// G, 26
-	 -0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.33f,	// F, 27
-};
+//// Vertices coordinates
+//GLfloat vertices[] =
+//{ //     COORDINATES     /        COLORS      /   TexCoord  //
+//	-0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.75f, 0.66f, // 0
+//	-0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.75f, 0.66f,	// 1
+//	 0.5f, 0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.66f,	// 2
+//	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.75f, 0.33f,	// 3
+//	-0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.66f,	// 4
+//	-0.5f, -0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 1.0f,	// 5
+//	 0.5f, -0.5f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,	// 6
+//	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	1.0f, 0.33f,	// 7
+//	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.33f,	// H, 8
+//	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.66f,	// D, 9
+//	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.75f, 0.66f,	// C, 10
+//	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.75f, 0.33f,	// G, 11
+//	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.66f,	// G, 12
+//	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 1.0f,	// C, 13
+//	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 1.0f,	// B, 14
+//	 -0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.66f,	// F, 15
+//	 -0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.33f,	// F, 16
+//	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.66f,	// B, 17
+//	 -0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.66f,	// A, 18
+//	 -0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.33f,	// E, 19
+//	 -0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.0f,	// A, 20
+//	 -0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.33f,	// B, 21
+//	 0.5f, 0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.33f,	// C, 22
+//	 0.5f, 0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.50f, 0.0f,	// D, 23
+//	 -0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.33f,	// E, 24
+//	 0.5f, -0.5f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.66f,	// H, 25
+//	 0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.66f,	// G, 26
+//	 -0.5f, -0.5f,  -0.5f,     0.83f, 0.70f, 0.44f,	0.25f, 0.33f,	// F, 27
+//};
+//
+//// Indices for vertices order
+//GLuint indices[] =
+//{
+//	// Base
+//	24, 25, 26,
+//	26, 27, 24,
+//	// Top
+//	20, 21, 22,
+//	22, 23, 20,
+//	// lado 1
+//	16, 17, 18,
+//	18, 19, 16,
+//	// lado 2
+//	12, 13, 14,
+//	14, 15, 12,
+//	// Lado 3
+//	8, 9, 10,
+//	10, 11, 8,
+//	// Lado 4
+//	3, 0, 4,
+//	4, 7, 3
+//};
 
-// Indices for vertices order
-GLuint indices[] =
-{
-	// Base
-	24, 25, 26,
-	26, 27, 24,
-	// Top
-	20, 21, 22,
-	22, 23, 20,
-	// lado 1
-	16, 17, 18,
-	18, 19, 16,
-	// lado 2
-	12, 13, 14,
-	14, 15, 12,
-	// Lado 3
-	8, 9, 10,
-	10, 11, 8,
-	// Lado 4
-	3, 0, 4,
-	4, 7, 3
-};
+bool isKeyPressed = true;
+float row1Rotation = 0;
+
+Cube* row1[3][3];
+Cube* row2[3][3];
+Cube* row3[3][3];
+Cube* column1[3][3];
+Cube* column2[3][3];
+Cube* column3[3][3];
+
+void keyboard_func(GLFWwindow* window, int key, int scancode, int action, int mods) {
+	switch (key) {
+	case GLFW_KEY_Z:
+		if (action == GLFW_PRESS && !isKeyPressed) {
+			// Codigo aqui
+			for (int x = 0; x < 3; x++) {
+				for (int y = 0; y < 3; y++) {
+					row1[x][y]->RotateY(90.0f);
+				}
+			}
+			isKeyPressed = true;
+		} else if (action == GLFW_RELEASE) {
+			isKeyPressed = false;
+		}
+		break;
+	case GLFW_KEY_A:
+		if (action == GLFW_PRESS && !isKeyPressed) {
+			// Codigo aqui
+			for (int x = 0; x < 3; x++) {
+				for (int y = 0; y < 3; y++) {
+					row2[x][y]->RotateY(90.0f);
+				}
+			}
+			isKeyPressed = true;
+		} else if (action == GLFW_RELEASE) {
+			isKeyPressed = false;
+		}
+		break;
+	case GLFW_KEY_Q:
+		if (action == GLFW_PRESS && !isKeyPressed) {
+			// Codigo aqui
+			for (int x = 0; x < 3; x++) {
+				for (int y = 0; y < 3; y++) {
+					row3[x][y]->RotateY(90.0f);
+				}
+			}
+			isKeyPressed = true;
+		} else if (action == GLFW_RELEASE) {
+			isKeyPressed = false;
+		}
+		break;
+	case GLFW_KEY_E:
+		if (action == GLFW_PRESS && !isKeyPressed) {
+			// Codigo aqui
+			for (int x = 0; x < 3; x++) {
+				for (int y = 0; y < 3; y++) {
+					column1[x][y]->RotateY(90.0f);
+				}
+			}
+			isKeyPressed = true;
+		} else if (action == GLFW_RELEASE) {
+			isKeyPressed = false;
+		}
+		break;
+	case GLFW_KEY_R:
+		if (action == GLFW_PRESS && !isKeyPressed) {
+			// Codigo aqui
+			for (int x = 0; x < 3; x++) {
+				for (int y = 0; y < 3; y++) {
+					column2[x][y]->RotateY(90.0f);
+				}
+			}
+			isKeyPressed = true;
+		} else if (action == GLFW_RELEASE) {
+			isKeyPressed = false;
+		}
+		break;
+	case GLFW_KEY_T:
+		if (action == GLFW_PRESS && !isKeyPressed) {
+			// Codigo aqui
+			for (int x = 0; x < 3; x++) {
+				for (int y = 0; y < 3; y++) {
+					column3[x][y]->RotateY(90.0f);
+				}
+			}
+			isKeyPressed = true;
+		} else if (action == GLFW_RELEASE) {
+			isKeyPressed = false;
+		}
+		break;
+	}
+}
 
 int main() {
+	Cube* one_one = new Cube(0, 0, -15);
+	Cube* one_two = new Cube(3, 0, -15);
+	Cube* one_three = new Cube(6, 0, -15);
+	Cube* two_one = new Cube(0, 0, -18);
+	Cube* two_two = new Cube(3, 0, -18);
+	Cube* two_three = new Cube(6, 0, -18);
+	Cube* three_one = new Cube(0, 0, -21);
+	Cube* three_two = new Cube(3, 0, -21);
+	Cube* three_three = new Cube(6, 0, -21);
+	row1[0][0] = one_one;
+	row1[0][1] = one_two;
+	row1[0][2] = one_three;
+	row1[1][0] = two_one;
+	row1[1][1] = two_two;
+	row1[1][2] = two_three;
+	row1[2][0] = three_one;
+	row1[2][1] = three_two;
+	row1[2][2] = three_three;
+
+	// Row 2
+	Cube* four_one = new Cube(0, 3, -15);
+	Cube* four_two = new Cube(3, 3, -15);
+	Cube* four_three = new Cube(6, 3, -15);
+	Cube* five_one = new Cube(0, 3, -18);
+	Cube* five_two = new Cube(3, 3, -18);
+	Cube* five_three = new Cube(6, 3, -18);
+	Cube* six_one = new Cube(0, 3, -21);
+	Cube* six_two = new Cube(3, 3, -21);
+	Cube* six_three = new Cube(6, 3, -21);
+	row2[0][0] = four_one;
+	row2[0][1] = four_two;
+	row2[0][2] = four_three;
+	row2[1][0] = five_one;
+	row2[1][1] = five_two;
+	row2[1][2] = five_three;
+	row2[2][0] = six_one;
+	row2[2][1] = six_two;
+	row2[2][2] = six_three;
+
+	// Row 3
+	Cube* seven_one = new Cube(0, 6, -15);
+	Cube* seven_two = new Cube(3, 6, -15);
+	Cube* seven_three = new Cube(6, 6, -15);
+	Cube* eight_one = new Cube(0, 6, -18);
+	Cube* eight_two = new Cube(3, 6, -18);
+	Cube* eight_three = new Cube(6, 6, -18);
+	Cube* nine_one = new Cube(0, 6, -21);
+	Cube* nine_two = new Cube(3, 6, -21);
+	Cube* nine_three = new Cube(6, 6, -21);
+	row3[0][0] = seven_one;
+	row3[0][1] = seven_two;
+	row3[0][2] = seven_three;
+	row3[1][0] = eight_one;
+	row3[1][1] = eight_two;
+	row3[1][2] = eight_three;
+	row3[2][0] = nine_one;
+	row3[2][1] = nine_two;
+	row3[2][2] = nine_three;
+
+	// Column 1
+	column1[0][0] = one_one;
+	column1[0][1] = two_one;
+	column1[0][2] = three_one;
+	column1[1][0] = four_one;
+	column1[1][1] = five_one;
+	column1[1][2] = six_one;
+	column1[2][0] = seven_one;
+	column1[2][1] = eight_one;
+	column1[2][2] = nine_one;
+
+	// Column 2
+	column2[0][0] = one_two;
+	column2[0][1] = two_two;
+	column2[0][2] = three_two;
+	column2[1][0] = four_two;
+	column2[1][1] = five_two;
+	column2[1][2] = six_two;
+	column2[2][0] = seven_two;
+	column2[2][1] = eight_two;
+	column2[2][2] = nine_two;
+
+	// Column 3
+	column3[0][0] = one_three;
+	column3[0][1] = two_three;
+	column3[0][2] = three_three;
+	column3[1][0] = four_three;
+	column3[1][1] = five_three;
+	column3[1][2] = six_three;
+	column3[2][0] = seven_three;
+	column3[2][1] = eight_three;
+	column3[2][2] = nine_three;
 	// Initialize GLFW
 	glfwInit();
 
@@ -153,6 +338,8 @@ int main() {
 	// Enables the Depth Buffer
 	glEnable(GL_DEPTH_TEST);
 
+	glfwSetKeyCallback(window, keyboard_func);
+
 	// Main while loop
 	while (!glfwWindowShouldClose(window)) {
 		// Specify the color of the background
@@ -174,36 +361,6 @@ int main() {
 		glm::mat4 view = glm::mat4(1.0f);
 		glm::mat4 proj = glm::mat4(1.0f);
 
-		glm::mat4 models[27] = {
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f),
-			glm::mat4(1.0f)
-		};
-
 		// Assigns different transformations to each matrix
 		//model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
 		view = glm::translate(view, glm::vec3(0.0f, -0.5f, -10.0f));
@@ -217,7 +374,7 @@ int main() {
 		int projLoc = glGetUniformLocation(shaderProgram.ID, "proj");
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj));
 
-		int iterator = 0;
+		/*int iterator = 0;
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
 				for (int k = -1; k <= 1; k++) {
@@ -227,6 +384,22 @@ int main() {
 					glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(int), GL_UNSIGNED_INT, 0);
 					iterator++;
 				}
+			}
+		}*/
+
+		for (int x = 0; x < 3; x++) {
+			for (int y = 0; y < 3; y++) {
+				row1[x][y]->Draw(modelLoc);
+			}
+		}
+		for (int x = 0; x < 3; x++) {
+			for (int y = 0; y < 3; y++) {
+				row2[x][y]->Draw(modelLoc);
+			}
+		}
+		for (int x = 0; x < 3; x++) {
+			for (int y = 0; y < 3; y++) {
+				row3[x][y]->Draw(modelLoc);
 			}
 		}
 
